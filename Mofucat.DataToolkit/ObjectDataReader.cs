@@ -24,6 +24,8 @@ public sealed class ObjectDataReader<T> : IDataReader
 
     private readonly int fieldCount;
 
+    private readonly Dictionary<string, int> currentOrdinals = new(StringComparer.OrdinalIgnoreCase);
+
     private Entry[] entries;
 
     //--------------------------------------------------------------------------------
@@ -60,6 +62,8 @@ public sealed class ObjectDataReader<T> : IDataReader
         for (var i = 0; i < properties.Length; i++)
         {
             var property = properties[i];
+
+            currentOrdinals[property.Name] = i;
 
             ref var entry = ref entries[i];
             entry.Name = property.Name;
@@ -129,14 +133,12 @@ public sealed class ObjectDataReader<T> : IDataReader
 
     public int GetOrdinal(string name)
     {
-        for (var i = 0; i < fieldCount; i++)
+        if (currentOrdinals.TryGetValue(name, out var ordinal))
         {
-            if (String.Equals(GetName(i), name, StringComparison.OrdinalIgnoreCase))
-            {
-                return i;
-            }
+            return ordinal;
         }
-        return -1;
+
+        throw new ArgumentException($"Column {name} is not found.", nameof(name));
     }
 
     //--------------------------------------------------------------------------------

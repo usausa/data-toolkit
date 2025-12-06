@@ -20,6 +20,8 @@ public sealed class MappingDataReader : IDataReader
 
     private readonly int fieldCount;
 
+    private readonly Dictionary<string, int> currentOrdinals = new(StringComparer.OrdinalIgnoreCase);
+
     private Entry[] entries;
 
     private object?[] currentValues;
@@ -107,6 +109,8 @@ public sealed class MappingDataReader : IDataReader
                     entry.Converter = converter.Converter;
                 }
             }
+
+            currentOrdinals[source.GetName(entry.SourceIndex)] = i;
         }
 
         currentValues = ArrayPool<object?>.Shared.Rent(fieldCount);
@@ -193,14 +197,12 @@ public sealed class MappingDataReader : IDataReader
 
     public int GetOrdinal(string name)
     {
-        for (var i = 0; i < fieldCount; i++)
+        if (currentOrdinals.TryGetValue(name, out var ordinal))
         {
-            if (String.Equals(GetName(i), name, StringComparison.OrdinalIgnoreCase))
-            {
-                return i;
-            }
+            return ordinal;
         }
-        return -1;
+
+        throw new ArgumentException($"Column {name} is not found.", nameof(name));
     }
 
     //--------------------------------------------------------------------------------
