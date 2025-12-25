@@ -48,17 +48,17 @@ public static class CommandBuilderExtensions
 //--------------------------------------------------------------------------------
 // Object
 //--------------------------------------------------------------------------------
-[Command("object", Description = "Object example")]
+[Command("object", "Object example")]
 public sealed class ObjectCommand
 {
 }
 
-[Command("imp", Description = "Import example")]
+[Command("imp", "Import example")]
 public sealed class ObjectImportCommand
 {
 }
 
-[Command("my", Description = "Load to MySQL")]
+[Command("my", "Load to MySQL")]
 public sealed class ObjectImportMyCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
@@ -68,7 +68,7 @@ public sealed class ObjectImportMyCommand : ICommandHandler
     }
 }
 
-[Command("sql", Description = "Load to SQL Server")]
+[Command("sql", "Load to SQL Server")]
 public sealed class ObjectImportSqlCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
@@ -81,17 +81,17 @@ public sealed class ObjectImportSqlCommand : ICommandHandler
 //--------------------------------------------------------------------------------
 // Mapping
 //--------------------------------------------------------------------------------
-[Command("map", Description = "Mapping example")]
+[Command("map", "Mapping example")]
 public sealed class MapCommand
 {
 }
 
-[Command("imp", Description = "Import example")]
+[Command("imp", "Import example")]
 public sealed class MapImportCommand
 {
 }
 
-[Command("my", Description = "Load to MySQL")]
+[Command("my", "Load to MySQL")]
 public sealed class MapImportMyCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
@@ -103,7 +103,7 @@ public sealed class MapImportMyCommand : ICommandHandler
     }
 }
 
-[Command("sql", Description = "Load to SQL Server")]
+[Command("sql", "Load to SQL Server")]
 public sealed class MapImportSqlCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
@@ -118,17 +118,17 @@ public sealed class MapImportSqlCommand : ICommandHandler
 //--------------------------------------------------------------------------------
 // Avro
 //--------------------------------------------------------------------------------
-[Command("avro", Description = "Avro example")]
+[Command("avro", "Avro example")]
 public sealed class AvroCommand
 {
 }
 
-[Command("imp", Description = "Import example")]
+[Command("imp", "Import example")]
 public sealed class AvroImportCommand
 {
 }
 
-[Command("my", Description = "Load to MySQL")]
+[Command("my", "Load to MySQL")]
 public sealed class AvroImportMyCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
@@ -138,7 +138,7 @@ public sealed class AvroImportMyCommand : ICommandHandler
     }
 }
 
-[Command("sql", Description = "Load to SQL Server")]
+[Command("sql", "Load to SQL Server")]
 public sealed class AvroImportSqlCommand : ICommandHandler
 {
     public async ValueTask ExecuteAsync(CommandContext context)
