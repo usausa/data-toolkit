@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <PackageId>Mofucat.DataBridge</PackageId>
-    <Title>DataBridge</Title>
+    <Title>Mofucat.DataBridge</Title>
     <Description>DataReader adapter</Description>
     <PackageTags>datareader bulkcopy</PackageTags>
   </PropertyGroup>
